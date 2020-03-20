@@ -1,0 +1,7 @@
+.ipynb_checkpoints/
+data/
+*.csv
+*.xlsx
+*.model
+Doc2vec1.model
+*.pptx
