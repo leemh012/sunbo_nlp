@@ -5,3 +5,4 @@ data/
 *.model
 Doc2vec1.model
 *.pptx
+__pycache__/
