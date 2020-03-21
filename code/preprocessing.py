@@ -32,9 +32,9 @@ if gpus:
     except RuntimeError as e:
         print(e)
 
-base_path = os.path.abspath('./')
-data_path = base_path + '\\data\\doc_set.xlsx'
-stopwords_path = base_path + '\\data\\korean_stopwords.txt'
+# base_path = os.path.abspath('./')
+data_path = './data/doc_set.xlsx'
+stopwords_path = './data/korean_stopwords.txt'
 stopwords = pd.read_csv(stopwords_path)['stopwords'].tolist()
 data = pd.read_excel(data_path)
 data.head()
@@ -56,28 +56,29 @@ def preprocessing(content, remove_stopwords=False):
 
     return tech_text
 
-
-
-def TensorTokenizer():
+def TensorTokenizer(data):
     tokenizer = Tokenizer()
     clean_train_content = []
     for txt in data['content']:
         clean_train_content.append(preprocessing(txt, remove_stopwords=True))
     clean_data = pd.DataFrame({'content':clean_train_content, 'new_class':data['new_class'], 'small_class':data['new_small_class']})
     tokenizer.fit_on_texts(clean_train_content)
+    text_sequences = tokenizer.text_to_sequences(clean_train_content)
+
+twitter = Okt()
 
 clean_train_content = []
 for txt in data['content']:
     clean_train_content.append(preprocessing(txt, remove_stopwords=True))
 
+twitter.pos(clean_train_content[0])
+
+doc0 = [" ".join()]
+
 " ".join(["".join(w) for w, t in twitter.pos(s) if t not in ['Number', "Foreign"]])
 ["".join(w) for w, t in twitter.pos(s) for s in sent_tokenize(clean_train_content[0:3])]
 
 [w for w, t in twitter.pos(clean_train_content[100]) if t in ["Noun"]]
-
-twitter.pos(clean_train_content[0])
-twitter = Okt()
-doc0 = [" ".join()]
 
 clean_train_content[0]
 len(np.unique(data.big_class))
