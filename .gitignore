@@ -6,3 +6,4 @@ data/
 Doc2vec1.model
 *.pptx
 __pycache__/
+*.zip
